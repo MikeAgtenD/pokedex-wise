@@ -12,5 +12,13 @@ class Pokemon extends Model
     protected $fillable = ['name', 'base_experience', 'height', 'weight'];
 
 
-    //TODO: Add the abilities and sprites relationship
+    public function abilities()
+    {
+        return $this->hasMany(Ability::class);
+    }
+
+    public function sprites()
+    {
+        return $this->hasOne(Sprite::class);
+    }
 }

@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pokemons', function (Blueprint $table) {
+        Schema::create('abilities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('base_experience');
-            $table->integer('height');
-            $table->integer('weight');
+            $table->string('ability');
+            $table->boolean('is_hidden');
+            $table->integer('slot');
             $table->timestamps();
+
+            $table->foreignId('pokemon_id')->constrained('pokemons')->cascadeOnDelete();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pokemon');
+        Schema::dropIfExists('abilities');
     }
 };
