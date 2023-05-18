@@ -25,4 +25,9 @@ class Pokemon extends Model
     {
         return $this->hasMany(PokemonType::class);
     }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class);
+    }
 }
