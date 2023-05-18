@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ability extends Model
 {
-    protected $fillable = ['ability', 'is_hidden', 'slot', 'pokemon_id'];
+    protected $fillable = ['name', 'is_hidden', 'slot', 'pokemon_id'];
 
     public function pokemon()
     {

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('abilities', function (Blueprint $table) {
             $table->id();
-            $table->string('ability');
+            //TODO: Care for this when making api, in api the name is called ability in the abilities array, in json its name
+            $table->string('name');
             $table->boolean('is_hidden');
             $table->integer('slot');
             $table->timestamps();
