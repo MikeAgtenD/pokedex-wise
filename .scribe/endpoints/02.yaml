@@ -1,0 +1,320 @@
+name: Teams
+description: |-
+
+  API endpoints for managing teams
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/teams
+    metadata:
+      groupName: Teams
+      groupDescription: |-
+
+        API endpoints for managing teams
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all teams'
+      description: 'Returns a list of all teams, each with their associated pokemons.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":1,"name":"Mike''s pokemon team","pokemons":[1,2]},{"id":2,"name":"Testapiscribe","pokemons":[1,2]}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '53'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields:
+      data:
+        name: data
+        description: 'The list of teams'
+        required: false
+        example: null
+        type: 'string[]'
+        custom: []
+      'data.*.id':
+        name: 'data.*.id'
+        description: 'The ID of the team'
+        required: false
+        example: null
+        type: integer
+        custom: []
+      'data.*.name':
+        name: 'data.*.name'
+        description: 'The name of the team'
+        required: false
+        example: null
+        type: string
+        custom: []
+      'data.*.pokemons':
+        name: 'data.*.pokemons'
+        description: 'The pokemons associated with the team'
+        required: false
+        example: null
+        type: 'string[]'
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/teams
+    metadata:
+      groupName: Teams
+      groupDescription: |-
+
+        API endpoints for managing teams
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a new team'
+      description: 'Creates a new team with the provided name.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the team to create'
+        required: true
+        example: odit
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: odit
+    fileParameters: []
+    responses: []
+    responseFields:
+      data:
+        name: data
+        description: 'The created team'
+        required: false
+        example: null
+        type: object
+        custom: []
+      data.id:
+        name: data.id
+        description: 'The ID of the team'
+        required: false
+        example: null
+        type: integer
+        custom: []
+      data.name:
+        name: data.name
+        description: 'The name of the team'
+        required: false
+        example: null
+        type: string
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/teams/{id}'
+    metadata:
+      groupName: Teams
+      groupDescription: |-
+
+        API endpoints for managing teams
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a team by ID'
+      description: 'Returns the team with the specified ID, along with its associated pokemons.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the team.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: '1'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":1,"name":"Mike''s pokemon team","pokemons":[1,2]}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '52'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "TeamNotFound",
+            "error_message": "Team not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      id:
+        name: id
+        description: 'The ID of the team'
+        required: false
+        example: null
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'The name of the team'
+        required: false
+        example: null
+        type: string
+        custom: []
+      pokemons:
+        name: pokemons
+        description: 'The pokemons associated with the team'
+        required: false
+        example: null
+        type: 'string[]'
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/v1/teams/{id}'
+    metadata:
+      groupName: Teams
+      groupDescription: |-
+
+        API endpoints for managing teams
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Set Pokemons of a team'
+      description: 'This endpoint updates the pokemons of the specified team.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the team.'
+        required: true
+        example: '1'
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: '1'
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      pokemons:
+        name: pokemons
+        description: "An array of Pokemon ID's to set."
+        required: true
+        example:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+        type: 'string[]'
+        custom: []
+    cleanBodyParameters:
+      pokemons:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+    fileParameters: []
+    responses:
+      -
+        status: 400
+        content: |-
+          {
+            "error": "TooManyPokemons",
+            "error_message": "A team can have a maximum of 6 pokemons."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "TeamNotFound",
+            "error_message": "Team not found."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields:
+      id:
+        name: id
+        description: 'The ID of the team'
+        required: false
+        example: null
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'The name of the team'
+        required: false
+        example: null
+        type: string
+        custom: []
+      pokemons:
+        name: pokemons
+        description: 'The pokemons associated with the team'
+        required: false
+        example: null
+        type: 'string[]'
+        custom: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
