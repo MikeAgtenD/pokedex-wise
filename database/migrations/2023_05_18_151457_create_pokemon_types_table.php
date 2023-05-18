@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pokemon_abilities', function (Blueprint $table) {
+        Schema::create('pokemon_types', function (Blueprint $table) {
             $table->id();
-            //TODO: Care for this when making api, in api the name is called ability in the abilities array, in json its name
             $table->string('name');
-            $table->boolean('is_hidden');
+            $table->string('url');
             $table->integer('slot');
             $table->timestamps();
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pokemon_abilities');
+        Schema::dropIfExists('pokemon_types');
     }
 };

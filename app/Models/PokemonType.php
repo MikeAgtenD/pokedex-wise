@@ -5,9 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PokemonAbility extends Model
+class PokemonType extends Model
 {
-    protected $fillable = ['name', 'is_hidden', 'slot', 'pokemon_id'];
+    protected $fillable = [
+        'name',
+        'url',
+        'slot',
+        'pokemon_id',
+    ];
 
     public function pokemon()
     {

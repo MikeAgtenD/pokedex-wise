@@ -2,11 +2,13 @@
 
 namespace App\Console\Commands;
 
+use App\Models\PokemonType;
 use Illuminate\Console\Command;
 use App\Models\Pokemon;
-use App\Models\Ability;
-use App\Models\Sprite;
+use App\Models\PokemonAbility;
+use App\Models\PokemonSprite;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ImportPokemonData extends Command
 {
@@ -47,22 +49,42 @@ class ImportPokemonData extends Command
                 'name' => $pokemonData['name'],
                 'base_experience' => $pokemonData['base_experience'],
                 'height' => $pokemonData['height'],
-                'weight' => $pokemonData['weight']
+                'weight' => $pokemonData['weight'],
             ]);
+
             foreach ($pokemonData['abilities'] as $abilityData) {
-                Ability::create([
+                PokemonAbility::create([
                     'name' => $abilityData['ability']['name'],
-                    'is_hidden' => $abilityData['is_hidden'],
                     'slot' => $abilityData['slot'],
+                    'is_hidden' => $abilityData['is_hidden'],
                     'pokemon_id' => $pokemon->id
                 ]);
             }
 
-            if (isset($pokemonData['sprites'])) {
-                $pokemonData['sprites']['pokemon_id'] = $pokemon->id;
-                Sprite::create($pokemonData['sprites']);
+            $spriteData = $pokemonData['sprites'];
+            if ($spriteData) {
+                // Download and store the front_default sprite to storage.
+                $frontDefaultUrl = $spriteData['front_default'];
+                $imageContents = file_get_contents($frontDefaultUrl);
+                $imageName = Str::slug($pokemon->name) . '_front_default.png';
+                Storage::disk('public')->put($imageName, $imageContents);
+
+                // Save the local path for the front_default sprite.
+                $spriteData['front_default'] = 'storage/' . $imageName;
+
+                // Add pokemon_id to the sprite data and save it.
+                $spriteData['pokemon_id'] = $pokemon->id;
+                PokemonSprite::create($spriteData);
             }
 
+            foreach ($pokemonData['types'] as $typeData) {
+                PokemonType::create([
+                    'pokemon_id' => $pokemon->id,
+                    'name' => $typeData['type']['name'],
+                    'url' => $typeData['type']['url'],
+                    'slot' => $typeData['slot']
+                ]);
+            }
             $bar->advance();
         }
 
