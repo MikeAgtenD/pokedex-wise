@@ -11,7 +11,6 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(\App\Models\Team::class)->constrained('teams')->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Pokemon::class)->constrained('pokemons')->cascadeOnDelete();
-            $table->timestamps();
         });
     }
 
