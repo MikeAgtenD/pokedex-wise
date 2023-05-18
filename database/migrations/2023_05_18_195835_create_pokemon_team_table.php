@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('pokemon_team', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('team_id')->constrained()->onDelete('cascade');
-            $table->foreignId('pokemon_id')->constrained()->onDelete('cascade');
+            $table->foreignIdFor(\App\Models\Team::class)->constrained('teams')->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Pokemon::class)->constrained('pokemons')->cascadeOnDelete();
             $table->timestamps();
         });
     }

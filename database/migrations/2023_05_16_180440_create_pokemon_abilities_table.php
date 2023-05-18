@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('slot');
             $table->timestamps();
 
-            $table->foreignId('pokemon_id')->constrained('pokemons')->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Pokemon::class)->constrained('pokemons')->cascadeOnDelete();
         });
     }
 
