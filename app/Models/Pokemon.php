@@ -16,7 +16,7 @@ class Pokemon extends Model
         return $this->hasMany(PokemonAbility::class);
     }
 
-    public function sprites()
+    public function sprite()
     {
         return $this->hasOne(PokemonSprite::class);
     }

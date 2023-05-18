@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Pokemons;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PokemonResource;
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class GetAllPokemonsController extends Controller
 {
+    //TODO:: implement SCRIBE as open source package to document the api endpoints
     public function __invoke(Request $request)
     {
         $request->validate([
@@ -20,7 +22,8 @@ class GetAllPokemonsController extends Controller
 
         $sort = $request->get('sort');
 
-        $query = Pokemon::query();
+        //Eager loading
+        $query = Pokemon::with(['sprite', 'types', 'abilities']);
 
         if ($sort) {
             [$column, $direction] = explode('-', $sort);
@@ -29,6 +32,6 @@ class GetAllPokemonsController extends Controller
 
         $pokemons = $query->get();
 
-        return response()->json($pokemons);
+        return PokemonResource::collection($pokemons);
     }
 }
