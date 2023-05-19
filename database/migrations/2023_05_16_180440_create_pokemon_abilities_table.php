@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pokemon_abilities', function (Blueprint $table) {
             $table->id();
-            //TODO: Care for this when making api, in api the name is called ability in the abilities array, in json its name
             $table->string('name');
             $table->boolean('is_hidden');
             $table->integer('slot');

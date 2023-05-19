@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ImportPokemonFromApiCommand extends Command
 {
-    protected $signature = 'import:pokemon-from-json {pokemon}';
+    protected $signature = 'import:pokemon-from-api {pokemon}';
 
     protected $description = 'Imports a single Pokemon by name or ID from the Pokemon API.';
 

@@ -8,9 +8,6 @@ use App\Models\PokemonSprite;
 use App\Models\PokemonType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pokemon>
- */
 class PokemonFactory extends Factory
 {
     public function definition(): array
