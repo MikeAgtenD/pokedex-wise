@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pokemon extends Model
 {
+    use hasfactory;
+
     protected $table = "pokemons";
     protected $fillable = ['name', 'base_experience', 'height', 'weight'];
 

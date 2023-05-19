@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PokemonSprite extends Model
 {
+    use hasfactory;
     protected $fillable = [
         'pokemon_id',
         'front_default',

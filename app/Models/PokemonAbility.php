@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PokemonAbility extends Model
 {
+    use hasfactory;
     protected $fillable = ['name', 'is_hidden', 'slot', 'pokemon_id'];
 
     public function pokemon()

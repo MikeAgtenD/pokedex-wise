@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PokemonType extends Model
 {
+    use hasfactory;
     protected $fillable = [
         'name',
         'url',
